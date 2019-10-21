@@ -1,0 +1,15 @@
+*** Test Cases ***
+case1
+    :FOR    ${i}    IN RANGE    10
+    \    log    i=${i}
+    :FOR    ${j}    IN RANGE    1    10
+    \    log    j=${j}
+    :FOR    ${m}    IN RANGE    1    10    3
+    \    log    j=${m}
+
+case2
+    :FOR    ${a}    IN    A    B    C
+    \    log    a=${a}
+    @{listval}    Create List    1    2    F
+    :FOR    ${b}    IN    @{listval}
+    \    log    b=${b}

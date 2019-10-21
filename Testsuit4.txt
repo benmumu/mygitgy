@@ -1,0 +1,16 @@
+*** Test Cases ***
+case1
+    [Tags]    RunA    RunALL
+    log    a
+
+case2
+    [Tags]    RunB    RunALL
+    log    b
+
+case3
+    [Tags]    RunA    RunB    RunALL
+    log    c
+
+case4
+    [Tags]    RunALL
+    log    d

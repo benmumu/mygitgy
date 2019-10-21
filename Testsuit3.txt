@@ -1,0 +1,48 @@
+*** Test Cases ***
+case1
+    : FOR    ${I}    IN RANGE    10
+    \    log    i=${i}
+    : FOR    ${J}    IN RANGE    1    10
+    \    log    j=${j}
+    : FOR    ${m}    IN RANGE    1    10    3
+    \    log    j=${m}
+
+case2
+    : FOR    ${a}    IN    A    B    C
+    \    log    a=${a}
+    @{listval}    Create List    1    2    F
+    : FOR    ${b}    IN    @{listval}
+    \    log    b=${b}
+
+case3
+    : FOR    ${j}    IN RANGE    3
+    \    log    ${j}
+    \    Forj    ${j}
+    : FOR    ${m}    IN RANGE    3
+    \    log    ${m}
+    Forj    E111${m}log
+
+case4
+    #多行写法
+    ${a}    Set Variable    2
+    ${b}    Set Variable    5
+    Run Keyword IF    ${a}>=1    log    ${b}
+    ...    ELSE IF    ${b}<=4    log    2
+    ...    ELSE    log    3
+    #单行写法
+    Run Keyword IF    ${a}>=1    log    wahaha
+    ...    ELSE    log    6
+
+case5
+    : FOR    ${i}    IN RANGE    10
+    \    log    i=${i}
+    \    Run Keyword If    ${i}>7    Exit For Loop
+    :FOR    ${i}    IN RANGE    10
+    \    log    i=${i}
+    \    Exit For Loop If    ${i}>7
+
+*** Keywords ***
+ForJ
+    [Arguments]    ${agr1}
+    : FOR    ${i}    IN RANGE    2
+    \    log    arg=${agr1};i=${i}

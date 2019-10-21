@@ -1,0 +1,26 @@
+*** Settings ***
+Resource          test.txt
+
+*** Test Cases ***
+case1_arg
+    随机字符    chengguoli    \    123    abc
+    随机字符    chengguoli
+
+case2_singer
+    ${getarg1}    随机字符-1    arg1value
+    log    ${getarg1}
+
+case3_double
+    ${getarg2}    随机字符-2    arg1value
+    log    ${getarg2}
+    @{listarg2}    随机字符-2    arg1value
+    log    =@{listarg2}=
+    ${valarg1}    ${valarg2}    @{listarg}    随机字符-2    arg1value    456    a
+    ...    b
+    log    ${valarg1}=${valarg2}=@{listarg}
+
+case4_list
+    ${getarg3}    随机字符-3    arg1value    \    arg3
+    log    ${getarg3}
+    @{listarg3}    随机字符-3    arg1value    \    arg3
+    log    =@{listarg3}=

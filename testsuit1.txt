@@ -1,0 +1,93 @@
+*** Settings ***
+Library           String8loLGabcd    888842bloWARNWarn12    3
+Library           C:/python37/Lib/site-packages/robot/libraries/Collections.py
+Resource          test.txt
+Resource          C:/Users/hw/Desktop/ex_test2.txt
+Resource          C:/Users/hw/Desktop/ex_test1.txt
+Variables         ../../../selenium/test/test_webdriver/venv/test/10_10_12_robot.py
+
+*** Variables ***
+${val1}           value
+@{listval1}       abc    def    123
+
+*** Test Cases ***
+case1
+    log    hello
+    ${shuzhi}    Set Variable    ${2.6}    2.6
+
+case2
+    log    ${val1}
+    log many    @{listval1}
+
+case3
+    log    %{JAVA_HOME}
+
+case4
+    ${setval1}    Set Variable    abcd
+    ${setval2}    Set Variable If    '${setval1}' =='abcdd'    efgh    1111
+    ${getval1}    Get Length    ${setval1}
+    ${getval2}    Get Time
+    log    ${val1}
+    Run keyword If    '${setval1}'=='abcd'    log    efgh
+    log    0123${setval1}edfg
+    ${setval3}    Set Variable    0123${setval1}edfg
+    log    ${setval3[4:6]}
+
+case5
+    ${val1}    Set Variable    '123'
+    ${val2}    Evaluate    int(${val1})+1
+
+case6
+    @{val1}    Set Variable    1    2    3
+    @{list_val1}    Create List    3    2    1
+
+case7
+    Run Keyword    log    abcd    WARN
+
+case8
+    @{argval1}    Create List    abcd    WARN
+    ${keyword}    Set Variable    log
+    Run Keyword    ${keyword}    @{argval1}
+    log    @{argval1}
+
+case9
+    @{uselist}    Create List    a    b    c
+    log    @{uselist}[1]
+    log    ${uselist[1]}
+    log    ${uselist}[1]
+
+case10
+    @{listA}    Create List    1    2
+    @{listB}    Create List    3    4
+    @{listC}    Create List    ${listA}    ${listB}    5
+    log    @{listC[1]}[1]
+    log    ${listC[1][1]}
+
+case11
+    ${argVal1}    Create List    abcd    WARN
+    log    ${argVal1}
+    log    =@{argVal1}=
+    @{argVal2}    Create List    4444    8888
+    log    ${argVal2}
+
+case12
+    @{list1}    Create List    abcd    WARN
+    log    ${list1}
+    ${list1}    Create List    1234    5678
+    log    ${list1}
+    ${val}    Create List    1234    5678
+    log    =@{val}=
+    log    =@{list1}=
+    @{list1}    Create List    4444    8888
+    log    ${list1}
+
+case13
+    @{argval4}    Create List    abcd    WARN
+    log    ${argval4}
+    ${argval4}    Create List    1234    5678
+    log    ${argval4}
+    ${listval4}    Create List    1237    5678
+    log    =@{listval4}=
+    log    =@{argval4}=
+    @{argval4}    Create List    4444
+    log    ${argval4}
